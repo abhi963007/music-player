@@ -1,93 +1,104 @@
 <div align="center">
 
-# ❗**This repository is no longer maintained.**
+# 🎵 **Harmony Music** 🎵
+### *Premium "Neo-Glass" Dark Music Streaming Client for Android*
+
+<img src="https://github.com/anandnet/Harmony-Music/blob/main/cover.png" width="1200" style="border-radius: 16px; box-shadow: 0 8px 30px rgba(221, 183, 255, 0.15);" >
+
+---
+
+[![Licence](https://img.shields.io/github/license/abhi963007/music-player?style=for-the-badge&color=DDB7FF)](LICENSE)
+[![Translation](https://img.shields.io/weblate/progress/harmony-music?style=for-the-badge&color=FFB0CD)](https://hosted.weblate.org/projects/harmony-music/project-translations/)
+[![Platform](https://img.shields.io/badge/Platform-Android_Only-131313?style=for-the-badge&logo=android&logoColor=DDB7FF)](https://github.com/abhi963007/music-player)
 
 </div>
 
-<img src="https://github.com/anandnet/Harmony-Music/blob/main/cover.png" width="1200" >
+**Harmony Music** has been completely overhauled into a premium, state-of-the-art music streaming application designed **exclusively for Android**. Powered by Flutter, it sports a high-fidelity **Neo-Glass dark aesthetic** with electric neon purple and pink accents, obsidian deep black backdrops, and frosted glass containers with rich micro-animations.
 
-# Harmony Music
-A cross platform app for music streaming made with Flutter(Android, Windows, linux).
+---
 
-# Features
-* Ability to play song from Ytube/Ytube Music.
-* Song cache while playing
-* Radio feature support
-* Background music
-* Playlist creation & bookmark support
-* Artist & Album bookmark support
-* Import song,Playlist,Album,Artist via sharing from Ytube/Ytube Music.
-* Streaming quality control
-* Song downloading support
-* Language support
-* Skip silence
-* Dynamic Theme
-* Flexibility to switch between Bottom & Side Nav bar
-* Equalizer support
-* Android Auto support
-* Synced & Plain Lyrics support
-* Sleep Timer
-* No Advertisment
-* No Login required
-* Piped playlist integration
+## ✨ Premium UI & Redesign Features
 
+* 🌌 **Obsidian Infinite Black Canvas**: An absolute black theme background (`#131313`) tailored for modern OLED mobile screens.
+* 🔮 **Electric Purple & Neon Pink Accents**: Curated, high-contrast brand swatches (`#DDB7FF` and `#FFB0CD`) that deliver a premium, visually stunning contrast.
+* 🧊 **Floating Frosted Glass Nav Dock**: A custom navigation docker featuring physical backdrop blurs (`BackdropFilter`) and neon glow-borders that float elegantly over scrolling content.
+* 💊 **Vibrant Play & Shuffle Action Pills**: Playlists and albums utilize sleek multi-color play pills and frosted glass shuffle controls.
+* ✨ **Glow-framed Neomorphic Cards**: Beautiful micro-animations on quick picks carousels, album art decks, and active list items.
+* ✒️ **Sora & Inter Typography**: Custom modern fonts integrated directly for structural headings and elegant metadata descriptions.
+* 📱 **Android-Exclusive Build Optimization**: Fully stripped of legacy multi-platform configurations (iOS, Windows, Linux, Web) to deliver a lightweight, high-performance Android package.
 
-# Download
-* Pleass choose one source for android apk. you won't be able to update from cross build apk source.
+---
 
-<a href="https://github.com/anandnet/Harmony-Music/releases/latest"><img src ="https://github.com/anandnet/Harmony-Music/blob/main/don_github.png" width = "250"></a> <a href= "https://f-droid.org/packages/com.anandnet.harmonymusic"><img src = "https://github.com/anandnet/Harmony-Music/blob/main/down_fdroid.png" width = '250'></a></a> 
+## 🛠 Core App Features
 
-# Translation
-<a href="https://hosted.weblate.org/engage/harmony-music/">
-<img src="https://hosted.weblate.org/widget/harmony-music/project-translations/multi-auto.svg" alt="Translation status" />
-</a>
+* 🎵 **Unlimited Streaming**: Play any song, album, or video directly from YouTube and YouTube Music.
+* 💾 **Smart Song Caching**: Instantly cache tracks while listening for offline playback.
+* 📥 **Local Song Downloader**: Download your favorite tracks and playlists directly to local storage.
+* 🎙️ **Rich Lyrics Engine**: Synced and plain scrolling lyrics with glassmorphic overlays.
+* 🚗 **Android Auto Support**: Take your premium Neo-Glass playlists on the road with fully integrated car navigation dashboards.
+* 📻 **Personalized Radios**: Spawn instant customized radio queues based on any track.
+* 📂 **Piped Integration**: Sync your playlists and libraries effortlessly via Piped networks.
+* 🎚️ **Built-in Equalizer**: Tailor frequencies to your hardware setup with active sound curves.
+* ⏱️ **Sleep Timer**: Seamlessly fade out music using a frosted glass sleep scheduler.
+* 🚫 **100% Ad-Free & Private**: No registrations, no logins, and zero advertisements.
 
-You can also help us in translation, click status image or <a href="https://hosted.weblate.org/projects/harmony-music/project-translations/"> here </a> to go to Weblate.
+---
 
-# Troubleshoot
-* if you are facing Notification control issue or music playback stopped by system optimization, please enable ignore battery optimization option from settings
+## 📥 Download
 
-# License
+Choose the official release source for Android. **Note:** Ensure you stick to a single source to maintain consistent update packages.
+
+<div align="center">
+  <a href="https://github.com/abhi963007/music-player/releases/latest"><img src="https://github.com/anandnet/Harmony-Music/blob/main/don_github.png" width="250"></a> 
+  <a href="https://f-droid.org/packages/com.anandnet.harmonymusic"><img src="https://github.com/anandnet/Harmony-Music/blob/main/down_fdroid.png" width="250"></a>
+</div>
+
+---
+
+## 🗺️ Translation
+
+Help translate Harmony Music into your native language! Click the badge below or visit [Weblate](https://hosted.weblate.org/projects/harmony-music/project-translations/) to contribute.
+
+<div align="center">
+  <a href="https://hosted.weblate.org/engage/harmony-music/">
+    <img src="https://hosted.weblate.org/widget/harmony-music/project-translations/multi-auto.svg" alt="Translation status" />
+  </a>
+</div>
+
+---
+
+## 🔧 Troubleshooting
+
+* 🔋 **Playback Pauses / Background Stops**: If background music stops unexpectedly, please go to settings and enable the **"Ignore Battery Optimization"** option. This ensures Android's aggressive system battery savers don't terminate the background audio handler.
+
+---
+
+## 📜 License
+
 ```
-Harmony Music is a free software licensed under GPL v3.0 with following condition.
+Harmony Music is free software licensed under the GPL v3.0 license.
 
-- Copied/Modified version of this software can not be used for 'non-free' and profit purposes.
-- You can not publish copied/modified version of this app on closed source app repository
-  like PlayStore/AppStore.
-
+- Copied/Modified versions of this software CANNOT be used for proprietary or profit purposes.
+- You CANNOT publish copied/modified versions on closed-source app stores (e.g. Google Play Store).
 ```
 
+---
 
-# Disclaimer
+## ⚠️ Disclaimer
+
 ```
-This project has been created while learning & learning is the main intention.
-This project is not sponsored or affiliated with, funded, authorized, endorsed by any content provider.
-Any Song, content, trademark used in this app are intellectual property of their respective owners.
-Harmony music is not responsible for any infringement of copyright or other intellectual property rights that may result
-from the use of the songs and other content available through this app.
-
-This Software is released "as-is", without any warranty, responsibility or liability.
-In no event shall the Author of this Software be liable for any special, consequential,
-incidental or indirect damages whatsoever (including, without limitation, any 
-other pecuniary loss) arising out of the use of inability to use this product, even if
-Author of this Sotware is aware of the possibility of such damages and known defect.
+This project has been developed as an educational application.
+This project is not sponsored, funded, authorized, endorsed, or affiliated with any official content provider.
+All songs, artwork, and trademarks are the intellectual property of their respective owners.
 ```
 
-# Learning References & Credits
-<a href = 'https://docs.flutter.dev/'>Flutter documentation</a> - a best guide to learn cross platform Ui/app developemnt<br/>
-<a href = 'https://suragch.medium.com/'>Suragch</a>'s Article related to Just audio & state management,architectural style<br/>
-<a href = 'https://github.com/sigma67'>sigma67</a>'s unofficial ytmusic api project<br/>
-App UI inspired by <a href = 'https://github.com/vfsfitvnm'>vfsfitvnm</a>'s ViMusic<br/>
-Synced lyrics provided by <a href = 'https://lrclib.net' >LRCLIB</a> <br/>
-<a href = 'https://piped.video' >Piped</a> for playlists.
+---
 
-#### Major Packages used
-* just_audio: ^0.9.40  -  audio player for android
-* media_kit: ^1.1.9 - audio player for linux and windows
-* audio_service: ^0.18.15 - manage background music & platform audio services
-* get: ^4.6.6 -  package for high-performance state management, intelligent dependency injection, and route management
-* youtube_explode_dart: ^2.0.2 - Third party package to provide song url
-* hive: ^2.2.3 - offline db used 
-* hive_flutter: ^1.1.0
+## 🤝 Learning References & Credits
 
-
+* [Flutter Documentation](https://docs.flutter.dev/) - Official guide for UI and architecture.
+* [Suragch's Just Audio Guides](https://suragch.medium.com/) - Audio streaming state management.
+* [sigma67](https://github.com/sigma67) - Developer of the ytmusic API wrapper.
+* [vfsfitvnm/ViMusic](https://github.com/vfsfitvnm/ViMusic) - UI inspiration.
+* [LRCLIB](https://lrclib.net) - Synced lyrics provider database.
+* [Piped](https://piped.video) - Playlists synchronization engine.
