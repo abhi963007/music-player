@@ -90,27 +90,26 @@ class SearchResultScreenBN extends StatelessWidget {
 
                               controller: searchResScrController.tabController,
                               contentPadding:
-                                  const EdgeInsets.only(left: 15, right: 15),
-                              backgroundColor: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.color!,
-                              unselectedBackgroundColor:
-                                  Theme.of(context).colorScheme.secondary,
-                              borderWidth: 0,
+                                  const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                              backgroundColor: const Color(0xFFDDB7FF), // Electric Neon Purple for selected
+                              unselectedBackgroundColor: Colors.white.withOpacity(0.04), // Frosted/glass for unselected
+                              borderWidth: 1,
+                              borderColor: const Color(0xFFDDB7FF).withOpacity(0.2),
+                              unselectedBorderColor: Colors.white.withOpacity(0.08),
                               buttonMargin: const EdgeInsets.only(
-                                  right: 10, left: 4, top: 4, bottom: 4),
-                              borderColor: Colors.black,
-                              labelStyle: TextStyle(
-                                color: Theme.of(context).primaryColor,
+                                  right: 8, left: 4, top: 4, bottom: 4),
+                              radius: 12,
+                              labelStyle: const TextStyle(
+                                fontFamily: 'Inter',
+                                color: Color(0xFF131313), // Obsidian deep contrast text
                                 fontWeight: FontWeight.bold,
+                                fontSize: 13,
                               ),
                               unselectedLabelStyle: TextStyle(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.color!,
-                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Inter',
+                                color: Colors.white.withOpacity(0.7),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 13,
                               ),
                               // Add your tabs here
                               tabs: [

@@ -61,6 +61,7 @@ class _AnimatedPlayButtonState extends State<AnimatedPlayButton>
             : AnimatedIcon(
                 icon: AnimatedIcons.play_pause,
                 progress: _controller,
+                color: const Color(0xFF131313),
               ),
       );
     });

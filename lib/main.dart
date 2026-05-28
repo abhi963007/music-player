@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terminate_restart/terminate_restart.dart';
-
-import '/ui/screens/Search/search_screen_controller.dart';
 import '/utils/get_localization.dart';
 import '/services/downloader.dart';
 import '/services/piped_service.dart';
@@ -19,7 +17,6 @@ import 'ui/screens/Settings/settings_screen_controller.dart';
 import '/ui/utils/theme_controller.dart';
 import 'ui/screens/Home/home_screen_controller.dart';
 import 'ui/screens/Library/library_controller.dart';
-import 'utils/system_tray.dart';
 import 'utils/update_check_flag_file.dart';
 
 Future<void> main() async {
@@ -93,21 +90,11 @@ Future<void> startApplicationServices() async {
   Get.lazyPut(() => LibraryArtistsController(), fenix: true);
   Get.lazyPut(() => SettingsScreenController(), fenix: true);
   Get.lazyPut(() => Downloader(), fenix: true);
-  if (GetPlatform.isDesktop) {
-    Get.lazyPut(() => SearchScreenController(), fenix: true);
-    Get.put(DesktopSystemTray());
-  }
 }
 
 initHive() async {
-  String applicationDataDirectoryPath;
-  if (GetPlatform.isDesktop) {
-    applicationDataDirectoryPath =
-        "${(await getApplicationSupportDirectory()).path}/db";
-  } else {
-    applicationDataDirectoryPath =
-        (await getApplicationDocumentsDirectory()).path;
-  }
+  final applicationDataDirectoryPath =
+      (await getApplicationDocumentsDirectory()).path;
   await Hive.initFlutter(applicationDataDirectoryPath);
   await Hive.openBox("SongsCache");
   await Hive.openBox("SongDownloads");

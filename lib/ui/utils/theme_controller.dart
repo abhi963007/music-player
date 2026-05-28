@@ -182,57 +182,76 @@ class ThemeController extends GetxController {
       final baseTheme = ThemeData(
           useMaterial3: false,
           brightness: Brightness.dark,
-          canvasColor: Colors.black,
-          primaryColor: Colors.black,
-          primaryColorDark: Colors.black,
-          primaryColorLight: Colors.grey[850],
+          canvasColor: const Color(0xFF131313),
+          scaffoldBackgroundColor: const Color(0xFF131313),
+          primaryColor: const Color(0xFFDDB7FF),
+          primaryColorDark: const Color(0xFF131313),
+          primaryColorLight: const Color(0xFF2A2A2A),
+          cardColor: const Color(0xFF201F1F),
+          dialogBackgroundColor: const Color(0xFF353534),
           colorScheme: ColorScheme.fromSwatch(
-              accentColor: Colors.grey[700], brightness: Brightness.dark),
-          progressIndicatorTheme: ProgressIndicatorThemeData(
-              color: Colors.grey[700], linearTrackColor: Colors.white),
+              accentColor: const Color(0xFFFFB0CD),
+              backgroundColor: const Color(0xFF131313),
+              cardColor: const Color(0xFF201F1F),
+              brightness: Brightness.dark),
+          progressIndicatorTheme: const ProgressIndicatorThemeData(
+              color: Color(0xFFFFB0CD), linearTrackColor: Colors.white),
           textTheme: const TextTheme(
               titleLarge: TextStyle(
                 fontSize: 23,
+                fontFamily: 'Sora',
                 fontWeight: FontWeight.bold,
-              ),
-              titleMedium: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-              titleSmall: TextStyle(),
-              labelMedium: TextStyle(
-                fontWeight: FontWeight.w800,
-                fontSize: 23,
-              ),
-              labelSmall: TextStyle(
-                  fontSize: 15, letterSpacing: 0, fontWeight: FontWeight.bold),
-              bodyMedium: TextStyle(color: Colors.grey)),
-          navigationRailTheme: const NavigationRailThemeData(
-              backgroundColor: Colors.black,
-              selectedIconTheme: IconThemeData(
                 color: Colors.white,
               ),
-              unselectedIconTheme: IconThemeData(color: Colors.white38),
+              titleMedium: TextStyle(
+                fontFamily: 'Sora',
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+              titleSmall: TextStyle(
+                fontFamily: 'Inter',
+                color: Color(0xFFCFC2D6),
+              ),
+              labelMedium: TextStyle(
+                fontFamily: 'Sora',
+                fontWeight: FontWeight.w800,
+                fontSize: 23,
+                color: Colors.white,
+              ),
+              labelSmall: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 15,
+                  letterSpacing: 0,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFCFC2D6)),
+              bodyMedium: TextStyle(
+                fontFamily: 'Inter',
+                color: Color(0xFFE5E2E1),
+              )),
+          navigationRailTheme: const NavigationRailThemeData(
+              backgroundColor: Color(0xFF131313),
+              selectedIconTheme: IconThemeData(
+                color: Color(0xFFDDB7FF),
+              ),
+              unselectedIconTheme: IconThemeData(color: Color(0xFF988d9f)),
               selectedLabelTextStyle: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFDDB7FF),
                   fontWeight: FontWeight.bold,
                   fontSize: 15),
               unselectedLabelTextStyle: TextStyle(
-                  color: Colors.white38, fontWeight: FontWeight.bold)),
+                  color: Color(0xFF988d9f), fontWeight: FontWeight.bold)),
           bottomSheetTheme: const BottomSheetThemeData(
-              backgroundColor: Colors.black, modalBarrierColor: Colors.black),
+              backgroundColor: Color(0xFF201F1F), modalBarrierColor: Color(0xFF131313)),
           sliderTheme: const SliderThemeData(
-            //base bar color
-            inactiveTrackColor: Colors.white30,
-            //buffered progress
-            activeTrackColor: Colors.white,
-            //progress bar color
-            valueIndicatorColor: Colors.black38,
+            inactiveTrackColor: Color(0xFF353534),
+            activeTrackColor: Color(0xFFFFB0CD),
+            valueIndicatorColor: Color(0xFF201F1F),
             thumbColor: Colors.white,
           ),
-          textSelectionTheme: TextSelectionThemeData(
-              cursorColor: Colors.grey[700],
-              selectionColor: Colors.grey[700],
-              selectionHandleColor: Colors.grey[700]),
+          textSelectionTheme: const TextSelectionThemeData(
+              cursorColor: Color(0xFFDDB7FF),
+              selectionColor: Color(0xFFDDB7FF),
+              selectionHandleColor: Color(0xFFDDB7FF)),
           inputDecorationTheme: const InputDecorationTheme(
               focusColor: Colors.white,
               focusedBorder: UnderlineInputBorder(
@@ -304,7 +323,7 @@ class ThemeController extends GetxController {
               cursorColor: Colors.grey[400],
               selectionColor: Colors.grey[400],
               selectionHandleColor: Colors.grey[400]),
-          dialogTheme: DialogTheme(backgroundColor: Colors.grey[200]),
+          dialogTheme: DialogThemeData(backgroundColor: Colors.grey[200]),
           inputDecorationTheme: const InputDecorationTheme(
               focusColor: Colors.black,
               focusedBorder: UnderlineInputBorder(

@@ -68,6 +68,7 @@ class Home extends StatelessWidget {
         },
         child: Obx(
           () => Scaffold(
+              extendBody: true,
               bottomNavigationBar: settingsScreenController
                       .isBottomNavBarEnabled.isTrue
                   ? ScrollToHideWidget(

@@ -181,203 +181,211 @@ class AlbumScreen extends StatelessWidget {
                             itemBuilder: (_, index) {
                               if (index == 0) {
                                 return Padding(
-                                  padding: EdgeInsets.only(
-                                      left:
-                                          GetPlatform.isDesktop ? 15.0 : 10.0),
+                                  padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 8.0),
                                   child: SizedBox(
-                                      height: 40,
+                                    height: 48,
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      physics: const BouncingScrollPhysics(),
                                       child: Row(
                                         children: [
-                                          // Bookmark button
-                                          Obx(() => IconButton(
-                                            tooltip: albumController
-                                                      .isAddedToLibrary.isFalse
-                                                  ? "addToLibrary".tr
-                                                  : "removeFromLibrary".tr,
-                                              splashRadius: 10,
-                                              onPressed: () {
-                                                final add = albumController
-                                                    .isAddedToLibrary.isFalse;
-                                                albumController
-                                                    .addNremoveFromLibrary(
-                                                        albumController
-                                                            .album.value,
-                                                        add: add)
-                                                    .then((value) {
+                                          // 1. Premium Play Pill
+                                          GestureDetector(
+                                            onTap: () {
+                                              if (albumController.songList.isNotEmpty) {
+                                                playerController.playPlayListSong(
+                                                    List<MediaItem>.from(
+                                                        albumController.songList),
+                                                    0,
+                                                    playfrom: PlaylingFrom(
+                                                        name: albumController
+                                                            .album.value.title,
+                                                        type: PlaylingFromType.ALBUM));
+                                              }
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                              decoration: BoxDecoration(
+                                                gradient: const LinearGradient(
+                                                  colors: [Color(0xFFDDB7FF), Color(0xFFFFB0CD)],
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
+                                                ),
+                                                borderRadius: BorderRadius.circular(9999),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: const Color(0xFFDDB7FF).withOpacity(0.3),
+                                                    blurRadius: 12,
+                                                    spreadRadius: 1,
+                                                  ),
+                                                ],
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  const Icon(Icons.play_arrow_rounded, color: Color(0xFF131313), size: 20),
+                                                  const SizedBox(width: 6),
+                                                  Text(
+                                                    "play".tr,
+                                                    style: const TextStyle(
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 13,
+                                                      color: Color(0xFF131313),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 10),
+                                          // 2. Premium Shuffle Pill
+                                          GestureDetector(
+                                            onTap: () {
+                                              if (albumController.songList.isNotEmpty) {
+                                                final songsToplay = List<MediaItem>.from(albumController.songList);
+                                                songsToplay.shuffle();
+                                                songsToplay.shuffle();
+                                                playerController.playPlayListSong(
+                                                    songsToplay, 0,
+                                                    playfrom: PlaylingFrom(
+                                                        name: albumController.album.value.title,
+                                                        type: PlaylingFromType.ALBUM));
+                                              }
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white.withOpacity(0.04),
+                                                border: Border.all(
+                                                  color: const Color(0xFFDDB7FF).withOpacity(0.15),
+                                                  width: 1,
+                                                ),
+                                                borderRadius: BorderRadius.circular(9999),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  const Icon(Icons.shuffle, color: Color(0xFFDDB7FF), size: 16),
+                                                  const SizedBox(width: 6),
+                                                  Text(
+                                                    "shuffle".tr,
+                                                    style: const TextStyle(
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 13,
+                                                      color: Color(0xFFDDB7FF),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 12),
+                                          // Vertical separator
+                                          Container(
+                                            width: 1,
+                                            height: 24,
+                                            color: Colors.white.withOpacity(0.1),
+                                          ),
+                                          const SizedBox(width: 12),
+                                          // 3. Bookmark Button
+                                          Obx(() {
+                                            final isAdded = albumController.isAddedToLibrary.isTrue;
+                                            return _buildGlassCircleButton(
+                                              context: context,
+                                              icon: isAdded ? Icons.bookmark_added : Icons.bookmark_add,
+                                              tooltip: isAdded ? "removeFromLibrary".tr : "addToLibrary".tr,
+                                              iconColor: isAdded ? const Color(0xFFFFB0CD) : Colors.white,
+                                              onTap: () {
+                                                final add = !isAdded;
+                                                albumController.addNremoveFromLibrary(
+                                                    albumController.album.value,
+                                                    add: add)
+                                                .then((value) {
                                                   if (!context.mounted) return;
-
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(snackbar(
-                                                          context,
-                                                          value
-                                                              ? add
-                                                                  ? "albumBookmarkAddAlert"
-                                                                      .tr
-                                                                  : "albumBookmarkRemoveAlert"
-                                                                      .tr
-                                                              : "operationFailed"
-                                                                  .tr,
-                                                          size: SanckBarSize
-                                                              .MEDIUM));
+                                                  ScaffoldMessenger.of(context).showSnackBar(snackbar(
+                                                      context,
+                                                      value
+                                                          ? add
+                                                              ? "albumBookmarkAddAlert".tr
+                                                              : "albumBookmarkRemoveAlert".tr
+                                                          : "operationFailed".tr,
+                                                      size: SanckBarSize.MEDIUM));
                                                 });
                                               },
-                                              icon: Icon(albumController
-                                                      .isAddedToLibrary.isFalse
-                                                  ? Icons.bookmark_add
-                                                  : Icons.bookmark_added))),
-                                          // Play button
-                                          IconButton(
-                                            tooltip: "play".tr,
-                                              onPressed: () {
-                                                playerController
-                                                    .playPlayListSong(
-                                                        List<MediaItem>.from(
-                                                            albumController
-                                                                .songList),
-                                                        0,
-                                                        playfrom: PlaylingFrom(
-                                                            name:
-                                                                albumController
-                                                                    .album
-                                                                    .value
-                                                                    .title,
-                                                            type:
-                                                                PlaylingFromType
-                                                                    .ALBUM));
-                                              },
-                                              icon: Icon(
-                                                Icons.play_circle,
-                                                color: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium!
-                                                    .color,
-                                              )),
-                                          // Enqueue button
-                                          IconButton(
-                                            tooltip: "enqueueAlbumSongs".tr,
-                                              onPressed: () {
-                                                Get.find<PlayerController>()
-                                                    .enqueueSongList(
-                                                        albumController.songList
-                                                            .toList())
-                                                    .whenComplete(() {
-                                                  if (context.mounted) {
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(snackbar(
-                                                            context,
-                                                            "songEnqueueAlert"
-                                                                .tr,
-                                                            size: SanckBarSize
-                                                                .MEDIUM));
-                                                  }
-                                                });
-                                              },
-                                              icon: Icon(
-                                                Icons.merge,
-                                                color: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium!
-                                                    .color,
-                                              )),
-
-                                          // Download button
-                                          GetX<Downloader>(
-                                              builder: (controller) {
-                                            final id = albumController
-                                                .album.value.browseId;
-                                            return IconButton(
-                                              tooltip: "downloadAlbumSongs".tr,
-                                              onPressed: () {
-                                                if (albumController
-                                                    .isDownloaded.isTrue) {
-                                                  return;
-                                                }
-                                                controller.downloadPlaylist(
-                                                    id,
-                                                    albumController.songList
-                                                        .toList());
-                                              },
-                                              icon: albumController
-                                                      .isDownloaded.isTrue
-                                                  ? const Icon(
-                                                      Icons.download_done)
-                                                  : controller.playlistQueue
-                                                              .containsKey(
-                                                                  id) &&
-                                                          controller
-                                                                  .currentPlaylistId
-                                                                  .toString() ==
-                                                              id
-                                                      ? Stack(
-                                                          children: [
-                                                            Center(
-                                                                child: Text(
-                                                                    "${controller.playlistDownloadingProgress.value}/${albumController.songList.length}",
-                                                                    style: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .titleMedium!
-                                                                        .copyWith(
-                                                                            fontSize:
-                                                                                10,
-                                                                            fontWeight:
-                                                                                FontWeight.bold))),
-                                                            const Center(
-                                                                child:
-                                                                    LoadingIndicator(
-                                                              dimension: 30,
-                                                            ))
-                                                          ],
-                                                        )
-                                                      : controller.playlistQueue
-                                                              .containsKey(id)
-                                                          ? const Stack(
-                                                              children: [
-                                                                Center(
-                                                                    child: Icon(
-                                                                  Icons
-                                                                      .hourglass_bottom,
-                                                                  size: 20,
-                                                                )),
-                                                                Center(
-                                                                    child:
-                                                                        LoadingIndicator(
-                                                                  dimension: 30,
-                                                                ))
-                                                              ],
-                                                            )
-                                                          : const Icon(
-                                                              Icons.download),
                                             );
                                           }),
+                                          // 4. Enqueue Button
+                                          _buildGlassCircleButton(
+                                            context: context,
+                                            icon: Icons.merge,
+                                            tooltip: "enqueueAlbumSongs".tr,
+                                            onTap: () {
+                                              Get.find<PlayerController>().enqueueSongList(
+                                                  albumController.songList.toList())
+                                              .whenComplete(() {
+                                                if (context.mounted) {
+                                                  ScaffoldMessenger.of(context).showSnackBar(snackbar(
+                                                      context, "songEnqueueAlert".tr,
+                                                      size: SanckBarSize.MEDIUM));
+                                                }
+                                              });
+                                            },
+                                          ),
+                                          // 5. Download Button
+                                          GetX<Downloader>(builder: (controller) {
+                                            final id = albumController.album.value.browseId;
+                                            final isDownloaded = albumController.isDownloaded.isTrue;
+                                            final isDownloading = controller.playlistQueue.containsKey(id) &&
+                                                controller.currentPlaylistId.toString() == id;
+                                            final isQueued = controller.playlistQueue.containsKey(id);
 
-                                          // if (albumController
-                                          //     .isAddedToLibrary.isTrue)
-                                          //   IconButton(
-                                          //       onPressed: () {
-                                          //         albumController
-                                          //             .syncPlaylistSongs();
-                                          //       },
-                                          //       icon: const Icon(
-                                          //           Icons.cloud_sync)),
-
-                                          IconButton(
-                                            tooltip: "shareAlbum".tr,
-                                              visualDensity:
-                                                  const VisualDensity(
-                                                      vertical: -3),
-                                              splashRadius: 10,
-                                              onPressed: () {
-                                                Share.share(
-                                                    "https://youtube.com/playlist?list=${albumController.album.value.audioPlaylistId}");
+                                            return _buildGlassCircleButton(
+                                              context: context,
+                                              icon: isDownloaded ? Icons.download_done : (isQueued ? Icons.hourglass_bottom : Icons.download),
+                                              tooltip: "downloadAlbumSongs".tr,
+                                              iconColor: isDownloaded ? const Color(0xFFFFB0CD) : Colors.white,
+                                              customWidget: isDownloading
+                                                  ? Stack(
+                                                      alignment: Alignment.center,
+                                                      children: [
+                                                        Text(
+                                                          "${controller.playlistDownloadingProgress.value}",
+                                                          style: const TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Color(0xFFFFB0CD)),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 24,
+                                                          width: 24,
+                                                          child: CircularProgressIndicator(
+                                                            strokeWidth: 2,
+                                                            valueColor: AlwaysStoppedAnimation(Color(0xFFFFB0CD)),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    )
+                                                  : null,
+                                              onTap: () {
+                                                if (!isDownloaded) {
+                                                  controller.downloadPlaylist(
+                                                      id,
+                                                      albumController.songList.toList());
+                                                }
                                               },
-                                              icon: const Icon(
-                                                Icons.share,
-                                                size: 20,
-                                              )),
+                                            );
+                                          }),
+                                          // 6. Share Button
+                                          _buildGlassCircleButton(
+                                            context: context,
+                                            icon: Icons.share,
+                                            tooltip: "shareAlbum".tr,
+                                            onTap: () {
+                                              Share.share(
+                                                  "https://youtube.com/playlist?list=${albumController.album.value.audioPlaylistId}");
+                                            },
+                                          ),
                                         ],
-                                      )),
+                                      ),
+                                    ),
+                                  ),
                                 );
                               } else if (index == 1) {
                                 return buildTitleSubTitle(
@@ -543,5 +551,43 @@ class AlbumScreen extends StatelessWidget {
       barrierColor: Colors.transparent.withAlpha(100),
       builder: (context) => SongInfoBottomSheet(song),
     ).whenComplete(() => Get.delete<SongInfoController>());
+  }
+
+  Widget _buildGlassCircleButton({
+    required BuildContext context,
+    required IconData icon,
+    required String tooltip,
+    required VoidCallback onTap,
+    Color? iconColor,
+    Widget? customWidget,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8.0),
+      child: Tooltip(
+        message: tooltip,
+        child: GestureDetector(
+          onTap: onTap,
+          child: Container(
+            height: 38,
+            width: 38,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white.withOpacity(0.04),
+              border: Border.all(
+                color: Colors.white.withOpacity(0.1),
+                width: 1,
+              ),
+            ),
+            child: customWidget ?? Center(
+              child: Icon(
+                icon,
+                color: iconColor ?? Colors.white.withOpacity(0.8),
+                size: 18,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

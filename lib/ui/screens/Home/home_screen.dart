@@ -14,6 +14,7 @@ import '/ui/widgets/create_playlist_dialog.dart';
 import '../../navigator.dart';
 import '../../widgets/content_list_widget.dart';
 import '../../widgets/quickpickswidget.dart';
+import '../../widgets/premium_featured_card.dart';
 import '../../widgets/shimmer_widgets/home_shimmer.dart';
 import 'home_screen_controller.dart';
 import '../Settings/settings_screen.dart';
@@ -198,6 +199,40 @@ class Body extends StatelessWidget {
                         final items = homeScreenController
                                 .isContentFetched.value
                             ? [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        "Good evening, Alex",
+                                        style: TextStyle(
+                                          fontFamily: 'Sora',
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        DateTime.now().hour >= 17 || DateTime.now().hour < 5
+                                            ? "Ready for your night rhythm?"
+                                            : DateTime.now().hour >= 12 && DateTime.now().hour < 17
+                                                ? "Power through your afternoon focus!"
+                                                : "Ready for your morning drive?",
+                                        style: const TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: 14,
+                                          color: Color(0xFFCFC2D6),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                  child: PremiumFeaturedCard(),
+                                ),
                                 Obx(() {
                                   final scrollController = ScrollController();
                                   homeScreenController.contentScrollControllers

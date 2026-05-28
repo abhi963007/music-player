@@ -111,7 +111,7 @@ class ContentListItem extends StatelessWidget {
                         width: 120,
                         decoration: BoxDecoration(
                             color: Theme.of(context).primaryColorLight,
-                            borderRadius: BorderRadius.circular(10)),
+                            borderRadius: BorderRadius.circular(16)),
                         child: Center(
                             child: Icon(
                           content.playlistId == 'LIBRP'

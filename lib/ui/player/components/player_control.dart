@@ -94,23 +94,26 @@ class PlayerControlWidget extends StatelessWidget {
           ),
           GetX<PlayerController>(builder: (controller) {
             return ProgressBar(
-              thumbRadius: 7,
-              barHeight: 4.5,
-              baseBarColor: Theme.of(context).sliderTheme.inactiveTrackColor,
-              bufferedBarColor:
-                  Theme.of(context).sliderTheme.valueIndicatorColor,
-              progressBarColor: Theme.of(context).sliderTheme.activeTrackColor,
-              thumbColor: Theme.of(context).sliderTheme.thumbColor,
-              timeLabelTextStyle: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(fontSize: 14),
+              thumbRadius: 8,
+              barHeight: 6.0,
+              baseBarColor: Colors.white.withOpacity(0.08),
+              bufferedBarColor: Colors.white.withOpacity(0.15),
+              progressBarColor: const Color(0xFFFFB0CD),
+              thumbColor: Colors.white,
+              thumbGlowColor: const Color(0xFFFFB0CD).withOpacity(0.4),
+              thumbGlowRadius: 15,
+              timeLabelTextStyle: const TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 12,
+                color: Color(0xFFCFC2D6),
+              ),
               progress: controller.progressBarStatus.value.current,
               total: controller.progressBarStatus.value.total,
               buffered: controller.progressBarStatus.value.buffered,
               onSeek: controller.seek,
             );
           }),
+          const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -120,15 +123,33 @@ class PlayerControlWidget extends StatelessWidget {
                   icon: Obx(() => Icon(
                         Ionicons.shuffle,
                         color: playerController.isShuffleModeEnabled.value
-                            ? Theme.of(context).textTheme.titleLarge!.color
-                            : Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .color!
-                                .withOpacity(0.2),
+                            ? const Color(0xFFDDB7FF)
+                            : Colors.white.withOpacity(0.3),
                       ))),
               _previousButton(playerController, context),
-              const CircleAvatar(radius: 35, child: AnimatedPlayButton(key: Key("playButton"),)),
+              Container(
+                height: 70,
+                width: 70,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFDDB7FF), Color(0xFFFFB0CD)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFDDB7FF).withOpacity(0.4),
+                      blurRadius: 20,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                child: const AnimatedPlayButton(
+                  key: Key("playButton"),
+                  iconSize: 36,
+                ),
+              ),
               _nextButton(playerController, context),
               Obx(() {
                 return IconButton(
@@ -136,12 +157,8 @@ class PlayerControlWidget extends StatelessWidget {
                     icon: Icon(
                       Icons.all_inclusive,
                       color: playerController.isLoopModeEnabled.value
-                          ? Theme.of(context).textTheme.titleLarge!.color
-                          : Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .color!
-                              .withOpacity(0.2),
+                          ? const Color(0xFFDDB7FF)
+                          : Colors.white.withOpacity(0.3),
                     ));
               }),
             ],
@@ -153,9 +170,9 @@ class PlayerControlWidget extends StatelessWidget {
   Widget _previousButton(
       PlayerController playerController, BuildContext context) {
     return IconButton(
-      icon: Icon(
+      icon: const Icon(
         Icons.skip_previous,
-        color: Theme.of(context).textTheme.titleMedium!.color,
+        color: Colors.white,
       ),
       iconSize: 30,
       onPressed: playerController.prev,
@@ -174,8 +191,8 @@ Widget _nextButton(PlayerController playerController, BuildContext context) {
         icon: Icon(
           Icons.skip_next,
           color: isLastSong
-              ? Theme.of(context).textTheme.titleLarge!.color!.withOpacity(0.2)
-              : Theme.of(context).textTheme.titleMedium!.color,
+              ? Colors.white.withOpacity(0.2)
+              : Colors.white,
         ),
         iconSize: 30,
         onPressed: isLastSong ? null : playerController.next);
